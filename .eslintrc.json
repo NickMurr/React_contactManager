@@ -3,7 +3,17 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": ["error", { "singleQuote": true }],
-    "as-needed": { "requireForBlockBody": true }
+    "as-needed": { "requireForBlockBody": true },
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "only-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "ignore"
+      }
+    ]
   },
   "plugins": ["prettier", "react", "jsx-a11y", "import"]
 }
