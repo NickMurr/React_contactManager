@@ -22,5 +22,4 @@ Contact.propTypes = {
   email: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired
 };
-
 export default Contact;
