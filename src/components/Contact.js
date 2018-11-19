@@ -1,24 +1,54 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Contact extends Component {
+  state = {
+    showContactInfo: false
+  };
+
+  onDeleteClick = () => {
+    this.props.deleteClickHandler();
+  };
+
   render() {
     const { name, email, phone } = this.props.contact;
+    const { showContactInfo } = this.state;
     return (
       <div className="card card-body mb-3">
-        <h4>{name}</h4>
-        <ul className="list-group">
-          <li className="list-group-item">Email: {email} </li>
-          <li className="list-group-item">Phone: {phone} </li>
-        </ul>
+        <h4>
+          {name}{' '}
+          <i
+            onClick={() =>
+              this.setState({ showContactInfo: !this.state.showContactInfo })
+            }
+            className="fas fa-sort-down"
+            style={{ cursor: 'pointer' }}
+          />
+          <i
+            className="fas fa-times"
+            style={{ cursor: 'pointer', float: 'right', color: 'red' }}
+            onClick={this.onDeleteClick}
+          />
+        </h4>
+        {showContactInfo ? (
+          <ul className="list-group">
+            <li className="list-group-item">Email: {email} </li>
+            <li className="list-group-item">Phone: {phone} </li>
+          </ul>
+        ) : null}
       </div>
     );
   }
 }
 
 Contact.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
+  deleteClickHandler: PropTypes.func.isRequired
 };
 export default Contact;
